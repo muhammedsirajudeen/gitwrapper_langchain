@@ -4,7 +4,7 @@ class ChatResponse(BaseModel):
     '''
     response model for the chat
     '''
-    id:str
+    message:str
     response:str
 class ChatRequest(BaseModel):
     '''
@@ -13,3 +13,4 @@ class ChatRequest(BaseModel):
     query:str
     repo_full_name:str
     session_id:str
+    github_token:str
