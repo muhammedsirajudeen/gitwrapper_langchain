@@ -1,0 +1,16 @@
+
+services:
+  fastapi:
+    build: .
+    volumes:
+      - .:/app  # Mounts the current directory into the container
+    ports:
+      - "7000:7000"  # Exposes port 8000 for FastAPI
+    environment:
+      - PYTHONUNBUFFERED=1  # Ensures that Python output is not buffered
+    command: pipenv run uvicorn app.main:app --host 0.0.0.0 --port 7000 --reload  # Starts the app with uvicorn and auto-reload
+    networks:
+      - gitwrapper_elk
+networks:
+  gitwrapper_elk:
+    external: true
