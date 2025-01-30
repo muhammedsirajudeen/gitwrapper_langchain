@@ -40,13 +40,13 @@ def chat_user(chat: ChatRequest,chat_service:ChatService=Depends(get_chat_servic
         status_code=status.HTTP_200_OK
     )
 
-@router.delete("/")
-def chat_user_delete(chat: ChatRequest,chat_service:ChatService=Depends(get_chat_service)):
+@router.delete("/{session_id}")
+def chat_user_delete(session_id:str,chat_service:ChatService=Depends(get_chat_service)):
     '''
     used to clear the session of the user
     '''
-    session_id=chat.session_id
     chat_service.clear_chat(session_id)
+    redis_client.delete(session_id)
     print(session_id)
     return JSONResponse(
         content={"message":"success"},
