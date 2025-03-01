@@ -5,10 +5,10 @@ from app.services.chat_service import ChatService,get_chat_service
 import redis
 import requests
 router = APIRouter()
-redis_client=redis.Redis(host='redis',port=6379)
-backend_url="http://nginx"
+redis_client=redis.Redis(host='redis_server',port=6379)
+backend_url="https://gittracker.ddns.net"
 import json
-@router.post("/")
+@router.post("")
 def chat_user(chat: ChatRequest,chat_service:ChatService=Depends(get_chat_service)):
     '''
         used to chat with the ai model
