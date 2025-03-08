@@ -4,8 +4,9 @@ from app.schemas.ChatSchemas import ChatResponse,ChatRequest
 from app.services.chat_service import ChatService,get_chat_service
 import redis
 import requests
+import os
 router = APIRouter()
-redis_client=redis.Redis(host='redis_server',port=6379)
+redis_client=redis.Redis(host=os.getenv("REDIS_URL"),port=6379)
 backend_url="https://gittracker.ddns.net"
 import json
 @router.post("")
